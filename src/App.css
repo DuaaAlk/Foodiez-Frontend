@@ -1,3 +1,60 @@
+#bannerimage {
+  width: 100%;
+  background-image: url(https://www.maggi.co.uk/sites/default/files/styles/maggi_desktop_image_style/public/NUK1265%20maggi%20Recipes%20banner%201500x700px%20opt2A.jpg?h=4f5b30f1&itok=DcsF1RwA);
+  height: 250px;
+  background-position: center;
+}
+
+.container {
+  position: relative;
+  width: 50%;
+  max-width: 300px;
+}
+
+/* Make the image to responsive */
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* The overlay effect - lays on top of the container and over the image */
+.overlay {
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1;
+  width: 100%;
+  transition: 0.5s ease;
+  opacity: 0;
+  color: white;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* When you mouse over the container, fade in the overlay title */
+.container:hover .overlay {
+  opacity: 1;
+}
+/* -------------------------------------- */
+
+.card {
+  width: 20em;
+  box-shadow: 0 4px 20px rgba(1 1 1/15%);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 10px;
+
+  transition: 0.5 ease;
+}
+
+.card:hover {
+  transform: scale(1.1);
+}
+*/
+/* -------------------------------------- */
 .App {
   text-align: center;
 }
