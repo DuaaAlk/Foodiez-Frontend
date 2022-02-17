@@ -11,20 +11,24 @@ function CategoryModal({ show, handleClose }) {
 
   const handleChange = (event) => {
     setCategory({ ...category, [event.target.name]: event.target.value });
+    console.log("Habdle Change:", category);
   };
   const handleImage = (event) => {
-    setCategory((category.image = event.target.files[0]));
+    // console.log(event.target.value);
+    // console.log(event.target.files[0]);
+    setCategory({ ...category, image: event.target.files[0] });
+    console.log(category);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log("Handel Submit : ", category);
     categoryStore.createCategory(category);
     handleClose();
   };
 
   return (
     <div>
-      {console.log("In the modal")}
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Add Category</Modal.Title>
@@ -36,7 +40,7 @@ function CategoryModal({ show, handleClose }) {
               <Form.Control
                 name="name"
                 type="text"
-                placeholder="Category name"
+                placeholder=""
                 onChange={handleChange}
               />
             </Form.Group>
