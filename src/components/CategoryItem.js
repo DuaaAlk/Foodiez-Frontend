@@ -5,11 +5,18 @@ function CategoryItem({ category }) {
   return (
     <>
       <Card>
-        <Card.Img variant="top" src={category.image} alt={category.name} />
-        <Card.Body>
-          <Card.Title>{category.name}</Card.Title>
-          {/* <Card.Text>{category.description}</Card.Text> */}
-        </Card.Body>
+        <div class="container">
+          <img src={category.image} alt={category.name} class="image" />
+          <div class="overlay">
+            <div class="text">{category.name}</div>
+          </div>
+        </div>
+        {/* <Card.Img
+          className="img-fluid"
+          variant="top"
+          src={category.image}
+          alt={category.name}
+        /> */}
       </Card>
     </>
   );

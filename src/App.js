@@ -1,23 +1,21 @@
-
+import React from "react";
 import "./App.css";
-import { Route } from "react-router";
-import RecipeList from "./Recipe/RecipeList";
+import { Route, Routes } from "react-router";
+import RecipeList from "./components/RecipeList";
 import CategoryList from "./components/CategoryList";
-
 
 function App() {
   return (
-    <div className="App">
+    <div>
+      {/* <div id="bannerimage"></div>
       <header className="App-header">
-        <p></p>
-        <Route path="/recipes">
-           <CategoryList />
-          <RecipeList />
-        </Route>
-      </header>
+      </header> */}
+      <Routes>
+        <Route path="/" element={<CategoryList />}></Route>
+        <Route path="/recipes" element={<RecipeList />}></Route>
+      </Routes>
     </div>
-  )}
-
-
+  );
+}
 
 export default App;
