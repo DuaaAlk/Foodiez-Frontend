@@ -1,4 +1,5 @@
 import { makeAutoObservable } from "mobx";
+import instance from "./instance";
 
 class RecipeStore {
   recipe = [];
@@ -15,8 +16,9 @@ class RecipeStore {
 
   createRecipe = async (newRecipe) => {
     try {
-      const formData = new FormDate();
-      formData.append(key, newRecipe[key]);
+      const formData = new FormData();
+      for (const key in newRecipe) formData.append(key, newRecipe[key]);
+
       const res = await instance.post("/recipes", formData);
       this.recipe.push(res.data);
     } catch (error) {}
