@@ -4,6 +4,7 @@ import { Card } from "react-bootstrap";
 function CategoryItem({ category }) {
   return (
     <>
+      {" "}
       <Card>
         <div class="container">
           <img src={category.image} alt={category.name} class="image" />
@@ -12,11 +13,12 @@ function CategoryItem({ category }) {
           </div>
         </div>
         {/* <Card.Img
-          className="img-fluid"
+          className="card-img-top"
           variant="top"
           src={category.image}
           alt={category.name}
         /> */}
+        {/* <Card.Title>{category.name}</Card.Title> */}
       </Card>
     </>
   );

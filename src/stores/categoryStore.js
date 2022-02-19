@@ -15,6 +15,7 @@ class CategoryStore {
     } catch (error) {
       console.log(error);
     }
+    console.log(this.categories);
   };
 
   createCategory = async (newCategory) => {
@@ -30,5 +31,6 @@ class CategoryStore {
   };
 }
 const categoryStore = new CategoryStore();
+categoryStore.fetchCategories();
 
 export default categoryStore;
