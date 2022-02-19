@@ -25,6 +25,8 @@ function CategoryList() {
     )
     .map((category) => <CategoryItem key={category._id} category={category} />);
 
+  console.log(categoryList);
+
   const recipeList = recipeStore.recipe.map((recipe) => {
     return <RecipeItem recipe={recipe} key={recipe.id} />;
   });
