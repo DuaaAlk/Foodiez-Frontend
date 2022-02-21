@@ -1,11 +1,15 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable, observable, action } from "mobx";
 import instance from "./instance";
 
 class CategoryStore {
   categories = [];
 
   constructor() {
-    makeAutoObservable(this);
+    makeAutoObservable(this, {
+      categories: observable,
+      fetchCategories: action,
+      createCategory: action,
+    });
   }
 
   fetchCategories = async () => {
@@ -13,7 +17,7 @@ class CategoryStore {
       const response = await instance.get("/categories");
       this.categories = response.data;
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   };
 
@@ -21,7 +25,6 @@ class CategoryStore {
     try {
       const formData = new FormData();
       for (const key in newCategory) formData.append(key, newCategory[key]);
-
       const response = await instance.post("/categories", formData);
       this.categories.push(response.data);
     } catch (error) {
@@ -30,4 +33,5 @@ class CategoryStore {
   };
 }
 const categoryStore = new CategoryStore();
+categoryStore.fetchCategories();
 export default categoryStore;

@@ -3,7 +3,7 @@ import { Form, Stack, Button, Row } from "react-bootstrap";
 import { observer } from "mobx-react";
 import categoryStore from "../stores/categoryStore";
 import CategoryItem from "./CategoryItem";
-import CategoryModal from "./CategoryItem";
+import CategoryModal from "./CategoryModal";
 
 function CategoryList() {
   const [query, setQuery] = useState("");
@@ -32,7 +32,7 @@ function CategoryList() {
         <Button variant="outline-dark" onClick={handleShow}>
           Add Category
         </Button>
-        <CategoryModal show={show} handleShow={handleClose} />
+        <CategoryModal show={show} handleClose={handleClose} />
       </Stack>
       <Row>{categoryList}</Row>
     </div>
@@ -40,3 +40,5 @@ function CategoryList() {
 }
 
 export default observer(CategoryList);
+
+//

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import categoryStore from "../stores/categoryStore";
+import { observer } from "mobx-react";
 
 function CategoryModal({ show, handleClose }) {
   const [category, setCategory] = useState({
@@ -13,25 +14,25 @@ function CategoryModal({ show, handleClose }) {
     setCategory({ ...category, [event.target.name]: event.target.value });
   };
   const handleImage = (event) => {
-    setCategory((category.image = event.target.files[0]));
+    setCategory({ ...category, image: event.target.files[0] });
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log("category submitted", category);
     categoryStore.createCategory(category);
     handleClose();
   };
 
   return (
     <div>
-      {console.log("In the modal")}
-      <Modal show={show} onHide={handleClose}>
+      <Modal className="" show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Add Category</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3" controlId="">
               <Form.Label>Name</Form.Label>
               <Form.Control
                 name="name"
@@ -41,7 +42,7 @@ function CategoryModal({ show, handleClose }) {
               />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3" controlId="">
               <Form.Label>Image</Form.Label>
               <Form.Control
                 name="image"
@@ -50,7 +51,7 @@ function CategoryModal({ show, handleClose }) {
                 onChange={handleImage}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3" controlId="">
               <Form.Label>Description</Form.Label>
               <Form.Control
                 name="description"
@@ -69,4 +70,6 @@ function CategoryModal({ show, handleClose }) {
   );
 }
 
-export default CategoryModal;
+export default observer(CategoryModal);
+
+//
