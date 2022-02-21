@@ -1,14 +1,18 @@
 import { useState } from "react";
+import { useParams } from "react-router-dom";
 import recipeStore from "../stores/RecipeStore";
 import { Button, Form, Modal } from "react-bootstrap";
 import CategoryModal from "../components/CategoryModal";
+import categoryStore from "../stores/categoryStore";
 
 function RecipeModal({ showRecipeModal, handleCloseRecipeModal }) {
+  const { categoryId } = useParams();
+
   const [recipe, setRecipe] = useState({
     name: "",
     Image: "",
-    category: "",
-    ingredient: CategoryModal,
+    category: categoryId,
+    // ingredient: CategoryModal,
   });
 
   const handleChange = (event) =>
@@ -32,7 +36,20 @@ function RecipeModal({ showRecipeModal, handleCloseRecipeModal }) {
         <Modal.Body>
           <Form onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="">
-              <Form.Label>Name</Form.Label>
+              <Form.Label>Category</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder={
+                  categoryStore.categories.find(
+                    (category) => category._id === categoryId
+                  ).name
+                }
+                disabled
+                readOnly
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="">
+              <Form.Label>Recipe Name</Form.Label>
               <Form.Control
                 name="name"
                 type="text"
@@ -42,7 +59,7 @@ function RecipeModal({ showRecipeModal, handleCloseRecipeModal }) {
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="">
-              <Form.Label>Image</Form.Label>
+              <Form.Label>Recipe Image</Form.Label>
               <Form.Control
                 name="image"
                 type="file"
@@ -50,15 +67,14 @@ function RecipeModal({ showRecipeModal, handleCloseRecipeModal }) {
                 onChange={handleImage}
               />
             </Form.Group>
-            <Form.Group className="mb-3" controlId="">
-              <Form.Label>Description</Form.Label>
-              <Form.Control
-                name="description"
-                type="text"
-                placeholder=""
-                onChange={handleChange}
-              />
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Instructions</Form.Label>
+              <Form.Control as="textarea" rows={5} />
             </Form.Group>
+
             <Button variant="primary" type="submit">
               Submit
             </Button>

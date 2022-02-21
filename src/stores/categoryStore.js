@@ -15,7 +15,13 @@ class CategoryStore {
     } catch (error) {
       console.log(error);
     }
-    console.log(this.categories);
+  };
+
+  fetchSingleCategory = async (categoryId) => {
+    const foundCategory = this.categories.find(
+      (category) => category._id === categoryId
+    );
+    return foundCategory;
   };
 
   createCategory = async (newCategory) => {
