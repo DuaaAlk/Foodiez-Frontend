@@ -1,18 +1,35 @@
 import React from "react";
 import "./App.css";
 import { Route, Routes } from "react-router";
-import RecipeList from "./components/RecipeList";
 import CategoryList from "./components/CategoryList";
+import CategoryDetails from "./components/CategoryDetails";
+import CreateRecipe from "./components/CreateRecipe";
+import RecipeDetails from "./components/RecipeDetails";
+import Navbar from "./components/Navbar";
+import RecipeList from "./components/RecipeList";
 
 function App() {
   return (
-    <div>
-      {/* <div id="bannerimage"></div>
-      <header className="App-header">
-      </header> */}
+    <div className="App-header">
+      <div id="bannerimage" class="glow">
+        Foodiez
+      </div>
+      <Navbar />
       <Routes>
-        <Route path="/" element={<CategoryList />}></Route>
+        <Route path="/categories" element={<CategoryList />}></Route>
         <Route path="/recipes" element={<RecipeList />}></Route>
+        <Route
+          path="/:categoryId/recipes"
+          element={<CategoryDetails />}
+        ></Route>
+        <Route
+          path="/:categoryId/recipes/createRecipe"
+          element={<CreateRecipe />}
+        ></Route>
+        <Route
+          path="/:categoryId/recipes/:recipeId"
+          element={<RecipeDetails />}
+        ></Route>
       </Routes>
     </div>
   );

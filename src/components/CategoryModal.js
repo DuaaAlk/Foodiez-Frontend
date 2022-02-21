@@ -9,10 +9,9 @@ function CategoryModal({ show, handleClose }) {
     description: "",
   });
 
-  const handleChange = (event) => {
+  const handleChange = (event) =>
     setCategory({ ...category, [event.target.name]: event.target.value });
-    console.log("Habdle Change:", category);
-  };
+
   const handleImage = (event) => {
     // console.log(event.target.value);
     // console.log(event.target.files[0]);
